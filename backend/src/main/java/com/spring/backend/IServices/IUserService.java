@@ -6,5 +6,5 @@ public interface IUserService {
 
     public User saveUserInfo(User user) throws Exception;
 
-    public boolean loginDetails(String email, String password);
+    public User loginDetails(String email, String password) throws Exception;
 }

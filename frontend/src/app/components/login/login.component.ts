@@ -1,28 +1,23 @@
-import { Component, OnInit } from '@angular/core';
-import { NgForm } from '@angular/forms';
-import { User } from '../../models/userModel/user';
-import { UserService } from '../../services/userService/user.service';
-import { Router } from '@angular/router';
-
+import { Component, OnInit } from "@angular/core";
+import { NgForm } from "@angular/forms";
+import { User } from "../../models/userModel/user";
+import { UserService } from "../../services/userService/user.service";
+import { Router } from "@angular/router";
 
 @Component({
-  selector: 'app-login',
-  templateUrl: './login.component.html',
-  styleUrl: './login.component.scss'
+  selector: "app-login",
+  templateUrl: "./login.component.html",
+  styleUrl: "./login.component.scss",
 })
-export class LoginComponent  {
-  
-
-  constructor(
-    private _router: Router,
-    private _userService: UserService
-  ) {}
+export class LoginComponent {
+  constructor(private _router: Router, private _userService: UserService) {}
 
   user = new User();
-  loginUser(userDetails: User){
+  loginUser(userDetails: User) {
     this._userService.loginUserFromRemote(userDetails).subscribe(
       (data) => {
-        console.log("LoggedIn:"+ data);
+        console.log("LoggedIn as:" + data.name);
+        this._userService.setUser(data);
         this._router.navigate(["/home"]);
       },
       (error) => {
@@ -32,9 +27,8 @@ export class LoginComponent  {
   }
   onSubmit(form: NgForm) {
     console.log(form.value); // Access form data
-     this.user.email = form.value.email;
-     this.user.password = form.value.password;
-     this.loginUser(this.user)
+    this.user.email = form.value.email;
+    this.user.password = form.value.password;
+    this.loginUser(this.user);
   }
-  
 }
