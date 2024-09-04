@@ -1,0 +1,21 @@
+<div>
+    <form #registerForm="ngForm" (ngSubmit)="onSubmit(registerForm)">
+        <div>
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" ngModel>
+        </div>
+        <div>
+          <label for="email">Email:</label>
+          <input type="text" id="email" name="email" ngModel>
+        </div>
+        <div>
+          <label for="password">Password:</label>
+          <input type="password" id="password" name="password" ngModel>
+        </div>
+        <button type="submit">Submit</button>
+      </form>
+
+      <p> {{errorMsg}} </p>
+
+      <a href="/login">Login</a>
+</div>
