@@ -18,7 +18,7 @@ public class UserController {
     }
 
     @PostMapping("/login")
-    public boolean userLogin(@RequestBody User user) {
+    public User userLogin(@RequestBody User user) throws Exception {
         return iUserService.loginDetails(user.getEmail(),user.getPassword());
     }
 

@@ -24,6 +24,7 @@ export class LoginComponent  {
       (data) => {
         console.log("LoggedIn:"+ data);
         this._router.navigate(["/home"]);
+        UserService.currentUser = data;
       },
       (error) => {
         console.log("Exception Occured:" + error);

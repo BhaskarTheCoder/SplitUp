@@ -7,6 +7,7 @@ import { HttpClient } from '@angular/common/http';
   providedIn: 'root'
 })
 export class UserService {
+  static currentUser: User| null = null;
 
   usersUrl = "http://localhost:9296"
   constructor(private _http: HttpClient) { }
@@ -20,5 +21,4 @@ export class UserService {
     const url = `${this.usersUrl}/user/register`;
     return this._http.post<any>(url,userDetails);
   }
-
 }

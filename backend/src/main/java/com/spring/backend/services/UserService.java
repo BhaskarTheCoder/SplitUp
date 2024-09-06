@@ -22,9 +22,15 @@ public class UserService implements IUserService {
     }
 
     @Override
-    public boolean loginDetails(String email, String password) {
-       User user = iUserRepo.findByEmail(email);
-       return user != null && user.getPassword().equals(password);
+    public User loginDetails(String email, String password) throws Exception {
+       User user = null;
+       if(email!=null && password!=null) {
+           user = iUserRepo.findByEmailAndPassword(email,password);
+       }
+       if(user==null) {
+           throw new Exception("Invalid email or password");
+       }
+       return user;
     }
 
 
